@@ -7,24 +7,42 @@ const InputTodo = () => {
     const title = "Add new todo";
 
     // state có 2 thành phần -> tên và function cập nhật giá trị biến
-    const [fullName, setFullName] = useState("")
+    const [todo, setTodo] = useState("");
+    const [listTodo, setListTodo] = useState(
+        ["todo 1", "todo 2", "todo 3"]
+    )
 
     const handleClick = () => {
-        alert("Click me")
+        // alert("Click me")
+        if (!todo) {
+            alert("empty todo");
+            return;
+        }
+        setListTodo([...listTodo, todo])
+        setTodo("")
     }
 
+
     return (
-        <div>
-            <div> new count = {count}</div>
+        <div style={{ border: "1px solid red" }}>
             <h1>{title}</h1>
-            <input type="text"
+            <input
+                value={todo}
+                type="text"
                 onChange={(event) => {
-                    setFullName(event.target.value)
+                    setTodo(event.target.value)
                 }}
             />
             &nbsp; &nbsp;
-            <div>My todo is {fullName}</div>
             <button onClick={() => handleClick()}>Save</button>
+            <br />
+            <ul>
+                {listTodo.map((item, index) => {
+                    return (
+                        <li key={index}>{item}</li>
+                    )
+                })}
+            </ul>
         </div>
     )
 }
