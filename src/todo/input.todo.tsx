@@ -1,8 +1,13 @@
 import { useState } from "react"; // use => hook
 
-let count = 1;
+interface IProps {
+    abc?: string
+    ericFunction: (value: string) => void;
+}
 
-const InputTodo = () => {
+const InputTodo = (props: IProps) => {
+
+    const { ericFunction } = props;
 
     const title = "Add new todo";
 
@@ -13,13 +18,14 @@ const InputTodo = () => {
     )
 
     const handleClick = () => {
+        ericFunction(todo);
         // alert("Click me")
-        if (!todo) {
-            alert("empty todo");
-            return;
-        }
-        setListTodo([...listTodo, todo])
-        setTodo("")
+        // if (!todo) {
+        //     alert("empty todo");
+        //     return;
+        // }
+        // setListTodo([...listTodo, todo])
+        // setTodo("")
     }
 
 

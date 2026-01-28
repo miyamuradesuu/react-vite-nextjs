@@ -49,9 +49,16 @@ import InputTodo from "./todo/input.todo";
 
 
 function App() {
+  const handleTest = (name: string) => {
+    alert(`handle test with name = ${name}`)
+  }
+
   return (
     <div>
-      <InputTodo/>
+      <InputTodo
+        // props -> passing function từ cha sang con
+        ericFunction={handleTest}
+      />
     </div>
   )
 }
