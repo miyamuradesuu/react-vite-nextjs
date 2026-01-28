@@ -3,29 +3,29 @@ import { useState } from "react"; // use => hook
 interface IProps {
     abc?: string
     ericFunction: (value: string) => void;
+    listTodo: string [];
+    setListTodo: (value: string []) => void;
 }
 
 const InputTodo = (props: IProps) => {
 
-    const { ericFunction } = props;
+    const { ericFunction, listTodo, setListTodo } = props;
 
     const title = "Add new todo";
 
     // state có 2 thành phần -> tên và function cập nhật giá trị biến
     const [todo, setTodo] = useState("");
-    const [listTodo, setListTodo] = useState(
-        ["todo 1", "todo 2", "todo 3"]
-    )
+    
 
     const handleClick = () => {
-        ericFunction(todo);
+        // ericFunction(todo);
         // alert("Click me")
-        // if (!todo) {
-        //     alert("empty todo");
-        //     return;
-        // }
-        // setListTodo([...listTodo, todo])
-        // setTodo("")
+        if (!todo) {
+            alert("empty todo");
+            return;
+        }
+        setListTodo([...listTodo, todo])
+        setTodo("")
     }
 
 
@@ -41,14 +41,7 @@ const InputTodo = (props: IProps) => {
             />
             &nbsp; &nbsp;
             <button onClick={() => handleClick()}>Save</button>
-            <br />
-            <ul>
-                {listTodo.map((item, index) => {
-                    return (
-                        <li key={index}>{item}</li>
-                    )
-                })}
-            </ul>
+            
         </div>
     )
 }

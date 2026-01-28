@@ -45,10 +45,16 @@
 // export default App
 
 
+import { useState } from "react";
 import InputTodo from "./todo/input.todo";
 
 
 function App() {
+
+  const [listTodo, setListTodo] = useState(
+    ["todo 1", "todo 2", "todo 3"]
+  )
+
   const handleTest = (name: string) => {
     alert(`handle test with name = ${name}`)
   }
@@ -58,7 +64,17 @@ function App() {
       <InputTodo
         // props -> passing function từ cha sang con
         ericFunction={handleTest}
+        listTodo={listTodo}
+        setListTodo={setListTodo}
       />
+      <br />
+      <ul>
+        {listTodo.map((item, index) => {
+          return (
+            <li key={index}>{item}</li>
+          )
+        })}
+      </ul>
     </div>
   )
 }
